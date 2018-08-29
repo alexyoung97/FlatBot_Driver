@@ -1,0 +1,15 @@
+#----------------------------------------------------------------------------
+# Set status service structure for the FlatBot driver
+# used to set the master status using strings
+# "disable"
+# "enable hardware"
+# "enable sim"
+# or to set the joint status using strings
+# "joints rigid"
+# "joints slack"
+# All strings are lower case and case sensitive
+# This will return either "okay" or a human readable error message
+#----------------------------------------------------------------------------
+string newStatus
+---
+string result
