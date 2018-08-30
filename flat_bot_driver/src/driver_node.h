@@ -1,42 +1,16 @@
 /*-----------------------------------------------------------\\
 ||                                                           ||
-||                 LIDAR fusion GNC project                  ||
+||                 FlatBot ROS Driver Node                   ||
 ||               ----------------------------                ||
 ||                                                           ||
-||    Surrey Space Centre - STAR lab                         ||
-||    Planetary Robotics PhD                                 ||
-||    (c) Surrey University 2017                             ||
-||    Pete dot Blacker at Gmail dot com                      ||
 ||                                                           ||
 \\-----------------------------------------------------------//
 
-smart_rover_sensor.h
-
-Object to control the fusion hybrid sensor on the smart rovers
------------------------------------------
-
-This object handles controlling the pan tilt unit, and collects
-data from the lidar and camera. This data is broadcast as
-a structured point cloud and an image along with a coordinate
-frame describing the position of the sensor when the scan was
-collected.
-
-Topics avilable are:
---------------------
-
-sme_awareness/bare-mesh
-sme_awareness/bare-simplified-mesh
-sme_awareness/color-mesh
-sme_awareness/color-simplified-mesh
-sme_awareness/scan-progress-monitor
-
-Services available are:
------------------------
-sme_awareness/scan
+driver_node.h
 
 -------------------------------------------------------------*/
-#ifndef SMART_FUSION_SENSOR_SENSOR_H_
-#define SMART_FUSION_SENSOR_SENSOR_H_
+#ifndef DRIVER_NODE_H_
+#define DRIVER_NODE_H_
 
 #include <math.h>
 #include <stdlib.h>
@@ -128,4 +102,4 @@ private:
   HardwareStatus hardwareStatus;
 };
 
-#endif /* SMART_FUSION_SENSOR_SENSOR_H_ */
+#endif /* DRIVER_NODE_H_ */
