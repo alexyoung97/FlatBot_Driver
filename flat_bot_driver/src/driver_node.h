@@ -66,6 +66,8 @@ public:
 		float pos, minPos, maxPos;
 	};
 
+  std::vector<Joint> joints;
+
 private:
 
   // driver status publisher and timer
@@ -87,7 +89,6 @@ private:
 
   std::string hardwarePortName;
 
-  std::vector<Joint> joints;
 
   // status of the arm
   enum Status { DISABLED, LIVE_SIM, LIVE_HARDWARE };

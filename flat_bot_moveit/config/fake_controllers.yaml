@@ -1,0 +1,6 @@
+controller_list:
+  - name: fake_InchWorm_controller
+    joints:
+      - wrist_a_joint
+      - elbow_joint
+      - wrist_b_joint

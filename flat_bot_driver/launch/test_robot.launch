@@ -1,0 +1,25 @@
+<launch>
+
+  <param name="prefix" value="" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find flat_bot_support)/urdf/flat_bot.xacro'" />
+
+  <arg name="model" default="$(find flat_bot_support)/urdf/flat_bot.xacro"/>
+  <!--arg name="gui" default="true" /-->
+  <arg name="rvizconfig" default="$(find flat_bot_driver)/config/robot_planning.rviz" />
+
+
+  <!-- param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" /-->
+  <!--  
+  <param name="use_gui" value="$(arg gui)"/>
+  -->
+  
+  <node name="driver" pkg="flat_bot_driver" type="driver_node" output="screen" />
+  
+  <!--  use this to publish the TF's of the robot joints -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" output="screen" />
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+  
+  
+
+</launch>

@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: flat_bot_support
+    relative_path: urdf/flat_bot.xacro
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/flat_bot.srdf
+  CONFIG:
+    author_name: Pete
+    author_email: Pete.blacker@gmail.com
+    generated_timestamp: 1535904127

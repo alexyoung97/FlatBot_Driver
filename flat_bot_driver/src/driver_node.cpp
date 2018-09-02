@@ -47,26 +47,19 @@ FlatBotDriver::FlatBotDriver() :
   statusTicker = n.createTimer(ros::Duration(0.1), &FlatBotDriver::publishStatus, this);
 
   // setup joints of the arm
-  joints.push_back(Joint("Wrist_A", 0, -90, 90));
-  joints.push_back(Joint("Elbow", 0, -150, 150));
-  joints.push_back(Joint("Wrist_B", 0, -90, 90));
+  joints.push_back(Joint("wrist_a_joint", 0, -90, 90));
+  joints.push_back(Joint("elbow_joint", 0, -150, 150));
+  joints.push_back(Joint("wrist_b_joint", 0, -90, 90));
 
   // setup status service server
   setStatusService = n.advertiseService("set_status", &FlatBotDriver::setStatus, this);
 
   // setup joint status publisher and create timer
-  jointStatePublisher = n.advertise<sensor_msgs::JointState>("joint_positions", 50);
+  jointStatePublisher = n.advertise<sensor_msgs::JointState>("/joint_states", 50);
   jointTicker = n.createTimer(ros::Duration(0.02), &FlatBotDriver::publishJointState, this, false, true);
 
   // start the core robot control loop
   coreTimer = n.createTimer(ros::Duration(0.01), &FlatBotDriver::coreLoop, this);
-
-  // start the trajectory action server
-  //trajectoryActionServer = actionlib::SimpleActionServer<moveit_msgs::ExecuteTrajectoryAction>(n,
-//		  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	   "trajectory_control",
-//																							   boost::bind(&FlatBotDriver::trajectoryHandler, this, _1),
-//																							   false);
-
 }
 
 void FlatBotDriver::publishStatus(const ros::TimerEvent&)
@@ -119,24 +112,37 @@ bool FlatBotDriver::setStatus(flat_bot_msgs::SetStatus::Request  &req,
   return true;
 }
 
-void FlatBotDriver::publishJointState(const ros::TimerEvent&)
+void FlatBotDriver::publishJointState(const ros::TimerEvent& event)
 {
   sensor_msgs::JointState jointStateMsg;
 
-  jointStateMsg.header.stamp = ros::Time();
+  jointStateMsg.header.stamp = event.current_real;
 
-  for (int j=0; joints.size(); ++j)
+  //printf("joint state pub : time [%f]\n", event.current_real.toSec());
+
+  for (int j=0; j<joints.size(); ++j)
   {
 	jointStateMsg.name.push_back(joints[j].name);
 	jointStateMsg.position.push_back(joints[j].pos);
-	jointStateMsg.velocity.push_back(0);
+	jointStateMsg.velocity.push_back(0.0);
   }
 
   jointStatePublisher.publish(jointStateMsg);
 }
 
-void FlatBotDriver::coreLoop(const ros::TimerEvent&)
+void FlatBotDriver::coreLoop(const ros::TimerEvent& event)
 {
+  //ros::Time curr = ros::Time::now();
+
+	//ros::WallTime curr = ros::WallTime::now();
+
+  //float secs = event.current_expected.toSec();
+
+  //float angle = sin(secs/10.0);
+  //joints[1].pos = angle;
+
+  //printf("core_loop: time = [%f], angle = [%f]\n", secs, angle);
+
   if (status == LIVE_SIM)
   {
     // if there is a trajectory in progress then continue to simulate it
@@ -246,6 +252,15 @@ int main(int argc, char **argv)
     {
     	ros::spinOnce();
     	loopRate.sleep();
+
+    	ros::Time c = ros::Time::now();
+    	double secs = c.toSec();
+    	float angle = sin(secs/2.0);
+    	driver.joints[0].pos = angle;
+    	driver.joints[1].pos = 0 - angle*2.0;
+    	driver.joints[2].pos = angle;
+
+    	//printf("time %f, time2 %f, angle %f\n", secs, c.toSec(), angle);
     }
 
 	printf("--[ FlatBot Driver node: shutdown OK ]--\n");

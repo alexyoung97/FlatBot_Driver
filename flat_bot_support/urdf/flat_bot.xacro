@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<robot name="flat_bot" xmlns:xacro="http://wiki.ros.org/xacro">
+  <xacro:include filename="$(find flat_bot_support)/urdf/flat_bot_macro.xacro"/>
+  <xacro:flat_bot prefix=""/>
+</robot>
