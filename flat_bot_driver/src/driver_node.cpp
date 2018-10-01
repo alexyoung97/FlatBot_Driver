@@ -157,7 +157,7 @@ void FlatBotDriver::coreLoop(const ros::TimerEvent& event)
 	  }
 	  else
 	  {
- 	    ros::Duration timeSinceStart = ros::Time::now() - trajectoryStartTime;
+ 	    ros::Duration timeSinceStart = event.current_real - trajectoryStartTime;
 
         // check if the trajectory is finished and set last position if it is
  	    trajectory_msgs::JointTrajectoryPoint finalPoint;

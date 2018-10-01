@@ -114,7 +114,7 @@ Visualization Manager:
         Colliding Link Color: 255; 0; 0
         Goal State Alpha: 1
         Goal State Color: 250; 128; 0
-        Interactive Marker Size: 4
+        Interactive Marker Size: 0.300000012
         Joint Violation Color: 255; 0; 255
         Planning Group: InchWorm
         Query Goal State: true
@@ -187,25 +187,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 9.36622715
+      Distance: 1.24368262
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.588526249
-        Y: 2.29508781
-        Z: 1.17719219e-06
+        X: 0.873067021
+        Y: 0.247207165
+        Z: 1.0579829e-06
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.409796953
+      Pitch: 1.25979614
       Target Frame: sirom_a_origin
       Value: XYOrbit (rviz)
-      Yaw: 1.53993762
+      Yaw: 1.57493758
     Saved: ~
 Window Geometry:
   Displays:

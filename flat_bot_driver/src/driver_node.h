@@ -45,9 +45,9 @@ public:
 	bool setStatus(flat_bot_msgs::SetStatus::Request  &req,
     		  	   flat_bot_msgs::SetStatus::Response &res);
 
-	void publishJointState(const ros::TimerEvent&);
+	void publishJointState(const ros::TimerEvent& event);
 
-	void coreLoop(const ros::TimerEvent&);
+	void coreLoop(const ros::TimerEvent& event);
 
 	void trajectoryHandler(const moveit_msgs::ExecuteTrajectoryGoalConstPtr &goal);
 

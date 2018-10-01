@@ -5,82 +5,82 @@
     <!-- links: main serial chain -->
     <link name="${prefix}sirom_a_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/test.dae"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/test.dae"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
     <link name="${prefix}link_a">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.0785 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/test_1.dae"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.0785 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/test_1.dae"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
     <link name="${prefix}link_b">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="${-0.0785 - 0.25} 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/test_2.dae"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="${-0.0785 - 0.25} 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/test_2.dae"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
     <link name="${prefix}sirom_b_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0785 -0.0213 0" rpy="${-pi/2.0} 0 ${pi}"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/test_3.dae"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0785 -0.021 0" rpy="${-pi/2.0} 0 ${pi}"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/test_3.dae"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
 
     <!-- joints: main serial chain -->
     <joint name="${prefix}wrist_a_joint" type="revolute">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.0785 -0.0213 0" rpy="0 0 0"/>
       <parent link="${prefix}sirom_a_link"/>
       <child link="${prefix}link_a"/>
       <axis xyz="0 0 1"/>
       <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="0" velocity="3.67"/>
     </joint>
     <joint name="${prefix}elbow_joint" type="revolute">
-      <origin xyz="2 0 0" rpy="0 0 0"/>
+      <origin xyz="0.25 0 0" rpy="0 0 0"/>
       <parent link="${prefix}link_a"/>
       <child link="${prefix}link_b"/>
       <axis xyz="0 0 1"/>
       <limit lower="-2.96706" upper="2.96706" effort="0" velocity="3.32"/>
     </joint>
     <joint name="${prefix}wrist_b_joint" type="revolute">
-      <origin xyz="2 0 0" rpy="0 0 0"/>
+      <origin xyz="0.25 0 0" rpy="0 0 0"/>
       <parent link="${prefix}link_b"/>
       <child link="${prefix}sirom_b_link"/>
       <axis xyz="0 0 1"/>
