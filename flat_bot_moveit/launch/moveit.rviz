@@ -4,8 +4,9 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /MotionPlanning1
+        - /Global Options1
         - /MotionPlanning1/Planning Request1
+        - /TF1
       Splitter Ratio: 0.742560029
     Tree Height: 405
   - Class: rviz/Help
@@ -114,7 +115,7 @@ Visualization Manager:
         Colliding Link Color: 255; 0; 0
         Goal State Alpha: 1
         Goal State Color: 250; 128; 0
-        Interactive Marker Size: 0.300000012
+        Interactive Marker Size: 0.150000006
         Joint Violation Color: 255; 0; 255
         Planning Group: InchWorm
         Query Goal State: true
@@ -171,6 +172,38 @@ Visualization Manager:
         Show Robot Collision: false
         Show Robot Visual: true
       Value: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        link_a:
+          Value: true
+        link_b:
+          Value: true
+        sirom_a_link:
+          Value: true
+        sirom_a_origin:
+          Value: true
+        sirom_b_link:
+          Value: true
+        sirom_b_origin:
+          Value: true
+      Marker Scale: 0.400000006
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        sirom_a_origin:
+          sirom_a_link:
+            link_a:
+              link_b:
+                sirom_b_link:
+                  sirom_b_origin:
+                    {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -187,25 +220,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 1.24368262
+      Distance: 1.13164485
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.873067021
-        Y: 0.247207165
-        Z: 1.0579829e-06
+        X: -0.022753641
+        Y: -0.100807995
+        Z: 1.20699451e-06
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 1.25979614
+      Pitch: 0.524797559
       Target Frame: sirom_a_origin
       Value: XYOrbit (rviz)
-      Yaw: 1.57493758
+      Yaw: 5.05494499
     Saved: ~
 Window Geometry:
   Displays:

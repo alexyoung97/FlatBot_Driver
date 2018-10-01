@@ -90,7 +90,7 @@
     <!-- transforms from the standard SIROM frame to the sirom_a link -->
     <link name="${prefix}sirom_a_origin" />
     <joint name="${prefix}sirom_a_origin-link" type="fixed">
-      <origin xyz="0.5 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
       <parent link="${prefix}sirom_a_origin"/>
       <child link="${prefix}sirom_a_link"/>
     </joint>
@@ -98,7 +98,7 @@
     <!-- transform from the standard SIROM frame to the sirom_b link -->
     <link name="${prefix}sirom_b_origin" />
     <joint name="${prefix}sirom_b_link-origin" type="fixed">
-      <origin xyz="0.5 0 0" rpy="0 0 ${pi}" />
+      <origin xyz="0.0785 -0.0213 0" rpy="0 0 0" />
       <parent link="${prefix}sirom_b_link" />
       <child link="${prefix}sirom_b_origin" />
     </joint>
