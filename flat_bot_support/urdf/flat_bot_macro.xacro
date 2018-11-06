@@ -7,14 +7,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
@@ -22,14 +22,14 @@
       <visual>
         <origin xyz="-0.0785 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
         <origin xyz="-0.0785 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
@@ -37,14 +37,14 @@
       <visual>
         <origin xyz="${-0.0785 - 0.25} 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
         <origin xyz="${-0.0785 - 0.25} 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
@@ -52,14 +52,14 @@
       <visual>
         <origin xyz="0.0785 -0.0213 0" rpy="${-pi/2.0} 0 ${pi}"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
         <origin xyz="0.0785 -0.021 0" rpy="${-pi/2.0} 0 ${pi}"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
