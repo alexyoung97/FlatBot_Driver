@@ -1,0 +1,16 @@
+ros_control_namespace: /ROS_CONTROL_NODE
+
+# Publish all joint states -----------------------------------
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50  
+  
+# Moveit trajectory controller --------------------------------
+#controller_manager_ns: moveit_simple_controller_manager
+move_group:
+  controller_list:
+    - name: /full_ctrl
+      action_ns: joint_trajectory_action
+      type: FollowJointTrajectory
+      default: true
+      joints: [wrist_a_joint, elbow_joint, wrist_b_joint]

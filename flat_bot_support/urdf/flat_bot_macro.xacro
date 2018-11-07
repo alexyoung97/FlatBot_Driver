@@ -2,6 +2,20 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
   <xacro:macro name="flat_bot" params="prefix">
+  
+    <!-- ROS Control Plugin used to drive joints -->
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <!--robotNamespace></robotNamespace-->
+      </plugin>
+    </gazebo>
+  
+    <!-- placeholder links to define the connector coordinate frames of each end effector -->
+    <link name="${prefix}sirom_a_origin">
+    </link>   
+    <link name="${prefix}sirom_b_origin">
+    </link>   
+  
     <!-- links: main serial chain -->
     <link name="${prefix}sirom_a_link">
       <visual>
@@ -17,52 +31,91 @@
           <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
+    <inertial>
+      <mass value="0.145" />
+      <origin xyz="0.0 0.0 -0.001687" rpy="0.0 0.0 0.0" />
+      <inertia
+	  ixx="0.000065748" ixy="0.0" ixz="0.0"
+	  iyy="0.000065207" iyz="0.0"
+	  izz="0.000058981" />
+    </inertial>
     </link>
     <link name="${prefix}link_a">
       <visual>
         <origin xyz="-0.0785 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.dae" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
         <origin xyz="-0.0785 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.dae" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
+    <inertial>
+      <mass value="0.145" />
+      <origin xyz="0.0 0.0 -0.001687" rpy="0.0 0.0 0.0" />
+      <inertia
+	  ixx="0.000065748" ixy="0.0" ixz="0.0"
+	  iyy="0.000065207" iyz="0.0"
+	  izz="0.000058981" />
+    </inertial>
     </link>
     <link name="${prefix}link_b">
       <visual>
         <origin xyz="${-0.0785 - 0.25} 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.dae" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
         <origin xyz="${-0.0785 - 0.25} 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.dae" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
+    <inertial>
+      <mass value="0.145" />
+      <origin xyz="0.0 0.0 -0.001687" rpy="0.0 0.0 0.0" />
+      <inertia
+	  ixx="0.000065748" ixy="0.0" ixz="0.0"
+	  iyy="0.000065207" iyz="0.0"
+	  izz="0.000058981" />
+    </inertial>
     </link>
     <link name="${prefix}sirom_b_link">
       <visual>
         <origin xyz="0.0785 -0.0213 0" rpy="${-pi/2.0} 0 ${pi}"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.dae" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
         <origin xyz="0.0785 -0.021 0" rpy="${-pi/2.0} 0 ${pi}"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.dae" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
+    <inertial>
+      <mass value="0.145" />
+      <origin xyz="0.0 0.0 -0.001687" rpy="0.0 0.0 0.0" />
+      <inertia
+	  ixx="0.000065748" ixy="0.0" ixz="0.0"
+	  iyy="0.000065207" iyz="0.0"
+	  izz="0.000058981" />
+    </inertial>
     </link>
+
+    <!-- transforms from the standard SIROM frame to the sirom_a link -->
+    <joint name="${prefix}sirom_a_origin-link" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+      <parent link="${prefix}sirom_a_origin"/>
+      <child link="${prefix}sirom_a_link"/>
+    </joint>
 
     <!-- joints: main serial chain -->
     <joint name="${prefix}wrist_a_joint" type="revolute">
@@ -87,21 +140,42 @@
       <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="0" velocity="3.67"/>
     </joint>
 
-    <!-- transforms from the standard SIROM frame to the sirom_a link -->
-    <link name="${prefix}sirom_a_origin" />
-    <joint name="${prefix}sirom_a_origin-link" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
-      <parent link="${prefix}sirom_a_origin"/>
-      <child link="${prefix}sirom_a_link"/>
-    </joint>
-
     <!-- transform from the standard SIROM frame to the sirom_b link -->
-    <link name="${prefix}sirom_b_origin" />
     <joint name="${prefix}sirom_b_link-origin" type="fixed">
       <origin xyz="0.0785 -0.0213 0" rpy="0 0 0" />
       <parent link="${prefix}sirom_b_link" />
       <child link="${prefix}sirom_b_origin" />
     </joint>
+    
+    <transmission name="wrist_a_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="wrist_a_joint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="wrist_a_motor">
+        <mechanicalReduction>50</mechanicalReduction>
+      </actuator>
+    </transmission>
+    
+    <transmission name="elbow_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="elbow_joint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="elbow_motor">
+        <mechanicalReduction>50</mechanicalReduction>
+      </actuator>
+    </transmission>
+    
+    <transmission name="wrist_b_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="wrist_b_joint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="wrist_b_motor">
+        <mechanicalReduction>50</mechanicalReduction>
+      </actuator>
+    </transmission>
 
   </xacro:macro>
 </robot>
