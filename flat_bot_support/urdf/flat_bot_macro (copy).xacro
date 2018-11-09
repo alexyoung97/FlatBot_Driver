@@ -19,94 +19,96 @@
     <!-- links: main serial chain -->
     <link name="${prefix}sirom_a_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/sirom_link_a.stl" />
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/collision/sirom_link_a_collision.stl" />
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
-      <inertial>
-        <mass value="0.443"/>
-        <origin xyz="0.058467 -0.00054 0.038125" rpy="-0.029845130209103 0.0607374579694027 -0.629540261194355" />
-        <inertia
-          ixx="0.000608839" ixy="0.0" ixz="0.0"
-          iyy="0.000540307" iyz="0.0"
-          izz="0.001015708" />
-      </inertial>
+    <inertial>
+      <mass value="0.132" />
+      <origin xyz="0.028596 0.0106 -0.023016"
+              rpy="-0.0937241808 0.1033234917 0.1027998929" />
+      <inertia
+	  ixx="0.000170585" ixy="0.0" ixz="0.0"
+	  iyy="0.00029451" iyz="0.0"
+	  izz="0.000199521" />
+    </inertial>
     </link>
     
     <link name="${prefix}link_a">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.0785 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/arm_link_a.stl" />
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_A.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
+        <origin xyz="0.250 0 -0.024" rpy="0.0 0.0 0.0" />
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/collision/arm_link_a_collision.stl" />
+          <cylinder length="0.05" radius="0.025" />
         </geometry>
       </collision>
-      <inertial>
-        <mass value="0.537"/>\n
-        <origin xyz="0.125 0 0.029919" rpy="0 0 0" />
-        <inertia
-          ixx="0.000202697" ixy="0.0" ixz="0.0"
-          iyy="0.003563004" iyz="0.0"
-          izz="0.003438567" />
-      </inertial>
+    <inertial>
+      <mass value="0.145" />
+      <origin xyz="0.0 0.0 -0.001687" rpy="0.0 0.0 0.0" />
+      <inertia
+	  ixx="0.000065748" ixy="0.0" ixz="0.0"
+	  iyy="0.000065207" iyz="0.0"
+	  izz="0.000058981" />
+    </inertial>
     </link>
     
     <link name="${prefix}link_b">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="${-0.0785 - 0.25} 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/arm_link_b.stl" />
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="${-0.0785 - 0.25} 0.0213 0" rpy="${-pi/2.0} 0 0"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/collision/arm_link_b_collision.stl" />
+          <mesh filename="package://flat_bot_support/meshes/visual/Link_B.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
-      <inertial>
-        <mass value="0.659"/>
-        <origin xyz="0.100912 -0.000004 0.03578" rpy="0.000174532925199433 -0.0146607657167524 0" />
-        <inertia
-          ixx="0.000256681" ixy="0.0" ixz="0.0"
-          iyy="0.004570271" iyz="0.0"
-          izz="0.004633015" />
-      </inertial>
+    <inertial>
+      <mass value="0.145" />
+      <origin xyz="0.0 0.0 -0.001687" rpy="0.0 0.0 0.0" />
+      <inertia
+	  ixx="0.000065748" ixy="0.0" ixz="0.0"
+	  iyy="0.000065207" iyz="0.0"
+	  izz="0.000058981" />
+    </inertial>
     </link>
     
     <link name="${prefix}sirom_b_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0785 -0.0213 0" rpy="${-pi/2.0} 0 ${pi}"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/visual/sirom_link_b.stl" />
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.dae" scale="0.001 0.001 0.001"/>
         </geometry>
+        <!--xacro:material_fanuc_gray40 /-->
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0785 -0.021 0" rpy="${-pi/2.0} 0 ${pi}"/>
         <geometry>
-          <mesh filename="package://flat_bot_support/meshes/collision/sirom_link_b_collision.stl" />
+          <mesh filename="package://flat_bot_support/meshes/visual/Sirom_Link_2.dae" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
-      <inertial>
-        <mass value="0.443"/>
-        <origin xyz="0.04189 0.00054 0.038125" rpy="0.029845130209103 -0.0607374579694027 -0.629540261194355" />
-        <inertia
-          ixx="0.000608839" ixy="0.0" ixz="0.0"
-          iyy="0.000540307" iyz="0.0"
-          izz="0.001015708" />
-      </inertial>
+    <inertial>
+      <mass value="0.145" />
+      <origin xyz="0.0 0.0 -0.001687" rpy="0.0 0.0 0.0" />
+      <inertia
+	  ixx="0.000065748" ixy="0.0" ixz="0.0"
+	  iyy="0.000065207" iyz="0.0"
+	  izz="0.000058981" />
+    </inertial>
     </link>
 
     <!-- transforms from the standard SIROM frame to the sirom_a link -->
@@ -118,7 +120,7 @@
 
     <!-- joints: main serial chain -->
     <joint name="${prefix}wrist_a_joint" type="revolute">
-      <origin xyz="0.100357 0 0" rpy="0 0 0"/>
+      <origin xyz="0.0785 -0.0213 0" rpy="0 0 0"/>
       <parent link="${prefix}sirom_a_link"/>
       <child link="${prefix}link_a"/>
       <axis xyz="0 0 1"/>

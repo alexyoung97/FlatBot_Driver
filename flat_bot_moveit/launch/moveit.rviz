@@ -197,7 +197,7 @@ Visualization Manager:
       Name: TF
       Show Arrows: true
       Show Axes: true
-      Show Names: true
+      Show Names: false
       Tree:
         sirom_a_origin:
           sirom_a_link:
@@ -224,25 +224,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.96238482
+      Distance: 1.49252486
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.309068292
-        Y: -0.0758137107
-        Z: -0.140822977
+        X: -0.154135033
+        Y: 0.129407048
+        Z: -0.124166295
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.724798501
+      Pitch: 0.674797416
       Target Frame: sirom_a_origin
       Value: Orbit (rviz)
-      Yaw: 6.14994097
+      Yaw: 4.39992857
     Saved: ~
 Window Geometry:
   Displays:
@@ -260,5 +260,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1680
-  X: 0
+  X: 65
   Y: 24
