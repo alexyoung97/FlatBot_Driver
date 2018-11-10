@@ -108,6 +108,29 @@
           izz="0.001015708" />
       </inertial>
     </link>
+    
+    <!--link name="${prefix}sirom_b_latch">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://flat_bot_support/meshes/visual/sirom_latch_visual.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://flat_bot_support/meshes/collision/sirom_latch_collision.stl" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.038" />
+        <origin xyz="-0.021394 -0.001309 0" rpy="0 0 -0.044331363000656" />
+        <inertia
+            ixx="0.000020967" ixy="0.0" ixz="0.0"
+            iyy="0.000007495" iyz="0.0"
+            izz="0.000027196" />
+      </inertial>
+    </link-->
 
     <!-- transforms from the standard SIROM frame to the sirom_a link -->
     <joint name="${prefix}sirom_a_origin-link" type="fixed">
@@ -122,22 +145,30 @@
       <parent link="${prefix}sirom_a_link"/>
       <child link="${prefix}link_a"/>
       <axis xyz="0 0 1"/>
-      <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="0" velocity="3.67"/>
+      <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="100" velocity="3.67"/>
     </joint>
     <joint name="${prefix}elbow_joint" type="revolute">
       <origin xyz="0.25 0 0" rpy="0 0 0"/>
       <parent link="${prefix}link_a"/>
       <child link="${prefix}link_b"/>
       <axis xyz="0 0 1"/>
-      <limit lower="-2.96706" upper="2.96706" effort="0" velocity="3.32"/>
+      <limit lower="-2.96706" upper="2.96706" effort="100" velocity="3.32"/>
     </joint>
     <joint name="${prefix}wrist_b_joint" type="revolute">
       <origin xyz="0.25 0 0" rpy="0 0 0"/>
       <parent link="${prefix}link_b"/>
       <child link="${prefix}sirom_b_link"/>
       <axis xyz="0 0 1"/>
-      <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="0" velocity="3.67"/>
+      <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="100" velocity="3.67"/>
     </joint>
+    
+    <!--joint name="${prefix}latch_b_joint" type="revolute">
+      <origin xyz="0.0565 -0.021472 0.038" rpy="0 0 ${-pi/4}"/>
+      <parent link="${prefix}sirom_b_link"/>
+      <child link="${prefix}sirom_b_latch"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="100" velocity="3.67"/>
+    </joint-->
 
     <!-- transform from the standard SIROM frame to the sirom_b link -->
     <joint name="${prefix}sirom_b_link-origin" type="fixed">
@@ -146,10 +177,11 @@
       <child link="${prefix}sirom_b_origin" />
     </joint>
     
+    <!-- ================= Arm Joint Transmissions ==================== -->
     <transmission name="wrist_a_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="wrist_a_joint">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <joint name="${prefix}wrist_a_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
       <actuator name="wrist_a_motor">
         <mechanicalReduction>50</mechanicalReduction>
@@ -158,8 +190,8 @@
     
     <transmission name="elbow_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="elbow_joint">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <joint name="${prefix}elbow_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
       <actuator name="elbow_motor">
         <mechanicalReduction>50</mechanicalReduction>
@@ -168,13 +200,24 @@
     
     <transmission name="wrist_b_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="wrist_b_joint">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <joint name="${prefix}wrist_b_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
       <actuator name="wrist_b_motor">
         <mechanicalReduction>50</mechanicalReduction>
       </actuator>
     </transmission>
+    
+    <!-- ================= SIROM Joint Transmissions ==================== -->
+    <!--transmission name="sirom_latch_b_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}latch_b_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="latch_b_motor">
+        <mechanicalReduction>50</mechanicalReduction>
+      </actuator>
+    </transmission-->
 
   </xacro:macro>
 </robot>
