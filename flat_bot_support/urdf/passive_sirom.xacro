@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<robot name="passive_sirom" xmlns:xacro="http://wiki.ros.org/xacro">
+  <xacro:include filename="$(find flat_bot_support)/urdf/passive_sirom_macro.xacro"/>
+  <xacro:passive_sirom prefix=""/>
+</robot>

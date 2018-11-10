@@ -23,4 +23,6 @@
     <disable_collisions link1="link_a" link2="sirom_a_link" reason="Adjacent" />
     <disable_collisions link1="link_b" link2="sirom_a_link" reason="Default" />
     <disable_collisions link1="link_b" link2="sirom_b_link" reason="Adjacent" />
+    <disable_collisions link1="sirom_a_link" link2="sirom_a_latch" reason="Adjacent" />
+    <disable_collisions link1="sirom_b_link" link2="sirom_b_latch" reason="Adjacent" />
 </robot>

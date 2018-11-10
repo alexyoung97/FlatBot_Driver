@@ -109,7 +109,7 @@
       </inertial>
     </link>
     
-    <!--link name="${prefix}sirom_b_latch">
+    <link name="${prefix}sirom_a_latch">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -130,7 +130,30 @@
             iyy="0.000007495" iyz="0.0"
             izz="0.000027196" />
       </inertial>
-    </link-->
+    </link>
+    
+    <link name="${prefix}sirom_b_latch">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://flat_bot_support/meshes/visual/sirom_latch_visual.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://flat_bot_support/meshes/collision/sirom_latch_collision.stl" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.038" />
+        <origin xyz="-0.021394 -0.001309 0" rpy="0 0 -0.044331363000656" />
+        <inertia
+            ixx="0.000020967" ixy="0.0" ixz="0.0"
+            iyy="0.000007495" iyz="0.0"
+            izz="0.000027196" />
+      </inertial>
+    </link>
 
     <!-- transforms from the standard SIROM frame to the sirom_a link -->
     <joint name="${prefix}sirom_a_origin-link" type="fixed">
@@ -162,13 +185,20 @@
       <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="100" velocity="3.67"/>
     </joint>
     
-    <!--joint name="${prefix}latch_b_joint" type="revolute">
-      <origin xyz="0.0565 -0.021472 0.038" rpy="0 0 ${-pi/4}"/>
+    <joint name="${prefix}latch_a_joint" type="revolute">
+      <origin xyz="0.0565 0.021472 0.038" rpy="0 0 ${-pi/4}"/>
+      <parent link="${prefix}sirom_a_link"/>
+      <child link="${prefix}sirom_a_latch"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-0.2" upper="${pi}" effort="100" velocity="${(2*pi)+0.2}"/>
+    </joint>
+    <joint name="${prefix}latch_b_joint" type="revolute">
+      <origin xyz="0.0565 -0.021472 0.038" rpy="0 0 ${(3*pi)/4}"/>
       <parent link="${prefix}sirom_b_link"/>
       <child link="${prefix}sirom_b_latch"/>
       <axis xyz="0 0 1"/>
-      <limit lower="${-pi/2.0}" upper="${pi/2.0}" effort="100" velocity="3.67"/>
-    </joint-->
+      <limit lower="-0.2" upper="${pi}" effort="100" velocity="${(2*pi)+0.2}"/>
+    </joint>
 
     <!-- transform from the standard SIROM frame to the sirom_b link -->
     <joint name="${prefix}sirom_b_link-origin" type="fixed">
@@ -209,15 +239,25 @@
     </transmission>
     
     <!-- ================= SIROM Joint Transmissions ==================== -->
-    <!--transmission name="sirom_latch_b_trans">
+    
+    <transmission name="sirom_latch_a_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}latch_a_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="latch_a_motor">
+        <mechanicalReduction>50</mechanicalReduction>
+      </actuator>
+    </transmission>
+    <transmission name="sirom_latch_b_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}latch_b_joint">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
       <actuator name="latch_b_motor">
         <mechanicalReduction>50</mechanicalReduction>
       </actuator>
-    </transmission-->
+    </transmission>
 
   </xacro:macro>
 </robot>

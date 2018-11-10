@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:macro name="passive_sirom" params="prefix">   
+  
+  <static>true</static>
+  
+    <!-- links: main serial chain -->
+    <link name="${prefix}sirom_a_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://flat_bot_support/meshes/visual/sirom_link_a.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://flat_bot_support/meshes/collision/sirom_link_a_collision.stl" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.443"/>
+        <origin xyz="0.058467 -0.00054 0.038125" rpy="-0.029845130209103 0.0607374579694027 -0.629540261194355" />
+        <inertia
+          ixx="0.000608839" ixy="0.0" ixz="0.0"
+          iyy="0.000540307" iyz="0.0"
+          izz="0.001015708" />
+      </inertial>
+    </link>
+
+  </xacro:macro>
+</robot>

@@ -33,6 +33,12 @@
     <node name="urdf_spawner_robot" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
       args="-urdf -model FlatBot_Different -param robot_description -x 0 -y 0 -z 0"/>
       
+    <!-- spawn passive sirom connector -->
+    <param name="passive_sirom_description"
+      command="$(find xacro)/xacro --inorder $(find flat_bot_support)/urdf/passive_sirom.xacro" />
+    <node name="urdf_spawner_psirom" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+      args="-urdf -model passive_sirom -param passive_sirom_description -x -1 -y 0 -z 0"/>
+    
     <!-- Fake Calibration -->
     <node pkg="rostopic" type="rostopic" name="fake_joint_calibration"
           args="pub /calibrated std_msgs/Bool true" />
@@ -41,8 +47,14 @@
     <rosparam file="$(find flat_bot_moveit)/config/joint_state_controller.yaml" command="load"/>
     <node name="joint_state_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn joint_state_controller" respawn="false" output="screen"/>
       
+    <!--  Arm Joint Controllers -->
     <rosparam file="$(find flat_bot_moveit)/config/arm_controller.yaml" command="load"/>
     <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/>
+    
+    <!-- Latch Controllers -->
+    <rosparam file="$(find flat_bot_support)/config/latch_controllers.yaml" command="load"/>
+    <node name="latch_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+      output="screen" args="latch_a_position_controller latch_b_position_controller"/>
     
   </group>
 

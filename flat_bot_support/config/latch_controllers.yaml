@@ -1,0 +1,11 @@
+# Position Controllers ---------------------------------------
+latch_a_position_controller:
+  type: velocity_controllers/JointPositionController
+  joint: latch_a_joint
+  pid: {p: 40.0, i: 0.5, d: 0.5}
+  
+# Position Controllers ---------------------------------------
+latch_b_position_controller:
+  type: velocity_controllers/JointPositionController
+  joint: latch_b_joint
+  pid: {p: 40.0, i: 0.5, d: 0.5}
