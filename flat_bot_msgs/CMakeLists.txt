@@ -15,7 +15,7 @@ find_package(catkin REQUIRED
 			 sensor_msgs
 			 moveit_msgs
 			 message_generation
-             header
+             
 )
 
 ## System dependencies are found with CMake's conventions
@@ -75,7 +75,6 @@ add_service_files(
 generate_messages(
   DEPENDENCIES
   std_msgs  # Or other packages containing msgs
-  header
   #flat_bot_msgs
 )
 
@@ -109,7 +108,7 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
+#  INCLUDE_DIRS include
 #  LIBRARIES flat_bot_driver
   CATKIN_DEPENDS message_generation
 #  DEPENDS system_lib
