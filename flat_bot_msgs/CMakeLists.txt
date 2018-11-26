@@ -1,9 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-#include(rosbuild)
-#rosbuild_init()
-#rosbuild_genmsg()
 project(flat_bot_msgs)
-
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -14,8 +10,7 @@ find_package(catkin REQUIRED
 			 std_msgs
 			 sensor_msgs
 			 moveit_msgs
-			 message_generation
-             
+			 message_generation           
 )
 
 ## System dependencies are found with CMake's conventions
@@ -75,7 +70,6 @@ add_service_files(
 generate_messages(
   DEPENDENCIES
   std_msgs  # Or other packages containing msgs
-  #flat_bot_msgs
 )
 
 ################################################
