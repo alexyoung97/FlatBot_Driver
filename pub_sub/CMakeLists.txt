@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(pub_sub)
 
-## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+## Compile as C++11, supported in ROS Kinetic and newer #AJY added -pthread and enabled the compile options, changed from std=c++11 to std=c++0x
+add_compile_options(-std=c++11 -pthread)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -14,6 +14,29 @@ find_package(catkin REQUIRED COMPONENTS
   flat_bot_msgs
 )
 
+## AJY Attempt to get BOOST working with catkin_make
+#set(BOOST_ROOT /usr/include/boost/)
+
+##set(use_SYSTEM_BOOST TRUE)
+##if(${use_SYSTEM_BOOST})
+##  include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
+##  else()
+##      set(BOOST_ROOT /usr/local/include/boost)
+##      set(Boost_DIR /usr/local/include/boost)
+##      set(BOOST_INCLUDEDIR /usr/local/include/boost/)
+##      set(BOOST_LIBRARYDIR /usr/local/include/boost/)
+##      set(Boost_NO_SYSTEM_PATHS ON)
+##      set(Boost_ADDITIONAL_VERSIONS "1.69.0")
+##      find_package(Boost 1.69.0 REQUIRED COMPONENTS thread ##filesystem log system)
+##      include_directories(${Boost_INCLUDE_DIRS})
+##  endif()
+##
+##  ## Specify libraries to link a library or executable target ##against
+##  target_link_libraries(main
+##     ${Boost_LIBRARIES}
+##      ${catkin_LIBRARIES}
+##  )
+##
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -198,7 +221,7 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(talker src/talker.cpp)
+add_executable(talker src/talker.cpp /home/alex/Y3P/y3p/module_code/libraries/module_status_data/module_status_data.cpp /home/alex/Y3P/y3p/module_code/libraries/msg_header/msg_header.cpp)
 target_link_libraries(talker ${catkin_LIBRARIES})
 add_dependencies(talker ${catkin_EXPORTED_TARGETS})
 #add_dependencies(some_library ${catkin_EXPORTED_TARGETS})
