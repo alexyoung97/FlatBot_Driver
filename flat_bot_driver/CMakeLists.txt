@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 2.8.3)
 project(flat_bot_driver)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++11)
+#add_compile_options(-std=c++11)
+
+## AJY Attempt to get BOOST working with catkin_make
+#set(BOOST_ROOT /usr/include/boost/)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -122,7 +125,7 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories( ${catkin_INCLUDE_DIRS} ) 
+include_directories( ${catkin_INCLUDE_DIRS} )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

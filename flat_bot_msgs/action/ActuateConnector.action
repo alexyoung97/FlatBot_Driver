@@ -8,6 +8,12 @@
 #
 #--------------------------------------
 
+# the id of the module to command
+string module_id
+
+# the numeric id of the connector on the module to actuate
+int16 connector_id
+
 # type of connector action, opening or closing
 int16 action
 int16 A_OPEN=0
@@ -19,9 +25,13 @@ int16 A_CLOSE=1
 int16 result
 int16 R_SUCCESS=0
 int16 R_MOTION_FAILED=1
+int16 R_INVALID_MODULE_ID=2
+int16 R_INVALID_CONNECTOR_ID=3
+int16 R_INVALID_ACTION=4
 
 ---
 
 # ratio completed 0 - 1
 float32 completed
+string status_msg
 

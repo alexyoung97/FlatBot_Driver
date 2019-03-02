@@ -4,7 +4,7 @@
 #
 # represents the current state of an
 # assembly module and all of its
-# connectors 
+# connectors
 #
 #--------------------------------------
 

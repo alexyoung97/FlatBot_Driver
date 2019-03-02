@@ -1,16 +1,25 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(flat_bot_msgs)
 
+## Compile as C++11, supported in ROS Kinetic and newer
+#add_compile_options(-std=c++11)
+
+## AJY Attempt to get BOOST working with catkin_make
+#set(BOOST_ROOT /usr/include/boost/)
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED
+find_package(catkin
+			 REQUIRED COMPONENTS
 			 roscpp
-  		 rospy
+  		 	 rospy
 			 std_msgs
 			 sensor_msgs
 			 moveit_msgs
-			 message_generation           
+			 message_generation
+			 actionlib
+			 actionlib_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -60,15 +69,15 @@ add_service_files(
 )
 
 ## Generate actions in the 'action' folder
-# add_action_files(
-#   FILES
-#   Action1.action
-#   Action2.action
-# )
+add_action_files(
+  FILES
+  ActuateConnector.action
+)
 
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
+  actionlib_msgs
   std_msgs  # Or other packages containing msgs
 )
 
@@ -104,9 +113,26 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES flat_bot_driver
-  CATKIN_DEPENDS message_generation
-#  DEPENDS system_lib
+  CATKIN_DEPENDS message_generation actionlib_msgs
+#  DEPENDS system_lib actionlib_msgs #AJY removed this
+	DEPENDS actionlib_msgs #AJY added this
 )
+
+###########################
+## C++ Binaries to Build ##
+###########################
+
+include_directories( ${catkin_INCLUDE_DIRS} )
+
+# Template action server node. Should probably be the base of the main ROS module interface node.
+
+add_executable(module_driver src/demo_module_action_server.cpp)
+add_dependencies(module_driver ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(module_driver  ${catkin_LIBRARIES} )
+
+add_executable(module_tester src/demo_action_client.cpp)
+add_dependencies(module_tester ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(module_tester  ${catkin_LIBRARIES} )
 
 #############
 ## Install ##

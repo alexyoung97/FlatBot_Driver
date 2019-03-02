@@ -12,6 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
   flat_bot_msgs
+  actionlib
+  actionlib_msgs
 )
 
 ## AJY Attempt to get BOOST working with catkin_make
@@ -221,7 +223,7 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(talker src/talker.cpp /home/alex/Y3P/y3p/module_code/libraries/module_status_data/module_status_data.cpp /home/alex/Y3P/y3p/module_code/libraries/msg_header/msg_header.cpp)
+add_executable(talker src/talker.cpp /home/alex/Y3P/y3p/module_code/libraries/module_status_data/module_status_data.cpp /home/alex/Y3P/y3p/module_code/libraries/msg_header/msg_header.cpp  /home/alex/Y3P/y3p/module_code/libraries/command_data/command_data.cpp)
 target_link_libraries(talker ${catkin_LIBRARIES})
 add_dependencies(talker ${catkin_EXPORTED_TARGETS})
 #add_dependencies(some_library ${catkin_EXPORTED_TARGETS})
